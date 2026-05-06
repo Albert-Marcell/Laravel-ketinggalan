@@ -4,7 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FakultasController extends Model
+class Fakultas extends Model
 {
-
+    protected $fillable = [
+        'name',
+        'dekan'
+    ];
 }

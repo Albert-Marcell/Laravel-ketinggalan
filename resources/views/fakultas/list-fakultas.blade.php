@@ -1,15 +1,35 @@
 <x-layout>
-    @foreach ($fakultas as $item)
-    <ul>
-        <li>{{ $item->id}}</li>
-        <li>{{ $item->name}}</li>
-        <li>{{ $item->dekan}}</li>
-    </ul>
-    @endforeach
-   <a href="/fakultas/create">
-      <h1>List Fakultas</h1>
-   </a>
-   <a href="/edit-fakultas">
-      <h1>Edit Fakultas</h1>
-   </a>
+   <h1>List Fakultas</h1>
+
+   <a href="/fakultas/create">Tambah Fakultas</a>
+
+   <table class="table">
+      <thead>
+         <tr>
+            <th>NO</th>
+            <th>Nama Fakultas</th>
+            <th>Nama Dekan</th>
+            <th>Aksi</th>
+         </tr>
+      </thead>
+      <tbody>
+         @foreach ($fakultas as $item)
+         <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $item->name }}</td>
+            <td>{{ $item->dekan }}</td>
+            <td>
+               <a href="/fakultas/{{ $item->id }}/edit" class="btn btn-warning">
+               Edit
+            </a>
+               <form action="/fakultas/{{ $item->id }}" method="POST" style="display:inline;">
+                  @csrf
+                  @method("DELETE")
+                  <button type="submit" class="btn btn-danger">Hapus</button>
+               </form>
+            </td>
+         </tr>
+         @endforeach
+      </tbody>
+   </table>
 </x-layout>

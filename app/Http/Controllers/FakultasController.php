@@ -12,7 +12,7 @@ class FakultasController extends Controller
      */
     public function index()
     {
-        $fakultas = Fakultas::all();
+        $fakultas = Fakultas::orderBy('created_at', 'desc')->get();
         return view('fakultas.list-fakultas', compact('fakultas'));
     }
 
@@ -22,14 +22,6 @@ class FakultasController extends Controller
     public function create()
     {
         return view('fakultas.add-fakultas');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -43,24 +35,39 @@ class FakultasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Fakultas $fakultas)
+    public function edit(Fakultas $fakulta)
     {
-        return view('fakultas.edit-fakultas');
+        return view('fakultas.edit-fakultas', [
+            'fakultas'=>$fakulta
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Fakultas $fakultas)
+    public function update(Request $request, Fakultas $fakulta)
     {
-        //
+        $fakulta->update([
+            'name'=>$request->nama_fakultas,
+            'dekan'=>$request->nama_dekan
+        ]);
+        
+        return redirect('/fakultas');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Fakultas $fakultas)
+    public function destroy(Fakultas $fakulta)
     {
-        //
+        $fakulta->delete();
+        return redirect()->back();
+    }
+    public function store(Request $request){
+        Fakultas::create([
+            'name'=>$request->nama_fakultas,
+            'dekan'=>$request->nama_dekan
+        ]);
+        return redirect('/fakultas');
     }
 }
