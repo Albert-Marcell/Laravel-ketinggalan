@@ -19,6 +19,7 @@
             <td>{{ $item->name }}</td>
             <td>{{ $item->dekan }}</td>
             <td>
+               <a href="/fakultas/{{ $item->id }}">Detail</a>
                <a href="/fakultas/{{ $item->id }}/edit" class="btn btn-warning">
                Edit
             </a>

@@ -27,9 +27,9 @@ class FakultasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Fakultas $fakultas)
+    public function show(Fakultas $fakulta)
     {
-        //
+        return view('fakultas.detail-fakultas', compact('fakulta'));
     }
 
     /**
