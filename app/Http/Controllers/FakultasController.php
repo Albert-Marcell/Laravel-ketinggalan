@@ -12,7 +12,7 @@ class FakultasController extends Controller
      */
     public function index()
     {
-        $fakultas = Fakultas::orderBy('created_at', 'desc')->get();
+        $fakultas = Fakultas::orderby('created_at','desc')->get();
         return view('fakultas.list-fakultas', compact('fakultas'));
     }
 
@@ -22,6 +22,18 @@ class FakultasController extends Controller
     public function create()
     {
         return view('fakultas.add-fakultas');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        Fakultas::create([
+            'name' => $request->name_fakultas,
+            'dekan' => $request->name_dekan
+        ]);
+        return redirect('/fakultas')->with('success','data berhasil di simpan');
     }
 
     /**
@@ -37,8 +49,8 @@ class FakultasController extends Controller
      */
     public function edit(Fakultas $fakulta)
     {
-        return view('fakultas.edit-fakultas', [
-            'fakultas'=>$fakulta
+        return view('fakultas.edit-fakultas',[
+            'fakultas'=> $fakulta
         ]);
     }
 
@@ -48,11 +60,10 @@ class FakultasController extends Controller
     public function update(Request $request, Fakultas $fakulta)
     {
         $fakulta->update([
-            'name'=>$request->nama_fakultas,
-            'dekan'=>$request->nama_dekan
+            'name'=>$request->name_fakultas,
+            'dekan'=> $request->name_dekan
         ]);
-        
-        return redirect('/fakultas');
+        return redirect('/fakultas')->with('success','data berhasil di update');
     }
 
     /**
@@ -60,14 +71,7 @@ class FakultasController extends Controller
      */
     public function destroy(Fakultas $fakulta)
     {
-        $fakulta->delete();
-        return redirect()->back();
-    }
-    public function store(Request $request){
-        Fakultas::create([
-            'name'=>$request->nama_fakultas,
-            'dekan'=>$request->nama_dekan
-        ]);
-        return redirect('/fakultas');
+        $fakulta ->delete();
+        return redirect()->back()->with('success','data berhasil di hapus');
     }
 }
