@@ -53,13 +53,13 @@
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('/') ? 'active bg-primary text-white' : '' }}" href="#">Beranda</a>
+                        <a class="nav-link {{ request()->is('/') ? 'active bg-primary text-white' : '' }}" href="/fakultas">Fakultas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeis('fakultas.index') ? 'active bg-primary text-white' : '' }}" href="#">Fakultas</a>
+                        <a class="nav-link" href="/prodi/create">Tambah Prodi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tentang</a>
+                        <a class="nav-link" href="/fakultas/create">Tambah Fakultas</a>
                     </li>
                 </ul>
             </div>
