@@ -7,8 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProdiRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
+    /** user is authorized to make this request.
      */
     public function authorize(): bool
     {
@@ -26,7 +25,7 @@ class StoreProdiRequest extends FormRequest
             'fakultas_id' => 'required',
             'nama_prodi' => 'required',
             'nama_kaprodi' => 'required',
-            'foto_kaprodi' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto_kaprodi' => 'required',
         ];
     }
 }

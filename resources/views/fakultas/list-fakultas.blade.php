@@ -41,13 +41,6 @@
         <a href="/fakultas/create" class="btn btn-primary btn-sm">+ Tambah Fakultas</a>
     </div>
 
-    @session('success')
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-    @endsession
-
     <div class="card border">
         <div class="table-responsive">
             <table class="table table-hover align-middle mb-0">
