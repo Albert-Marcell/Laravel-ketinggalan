@@ -25,12 +25,15 @@
                             </td>
                             <td>{{ $item->fakultas->name ?? 'Fakultas tidak ditemukan' }}</td>
                             <td>
-                                <a href="{{ route('prodi.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                <form action="{{ route('prodi.destroy', $item->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                                </form>
+                                <div class="d-flex gap-1">
+                                    <a href="{{ route('prodi.show', $item->id) }}" class="btn btn-sm btn-outline-secondary">Detail</a>
+                                    <a href="{{ route('prodi.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                    <form action="{{ route('prodi.destroy', $item->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @empty

@@ -52,8 +52,7 @@ class ProdiController extends Controller
      */
     public function show(Prodi $prodi)
     {
-
-        //
+        return view('prodi.detail-prodi', compact('prodi'));
     }
 
     /**
@@ -61,7 +60,8 @@ class ProdiController extends Controller
      */
     public function edit(Prodi $prodi)
     {
-        //
+        $fakultas = Fakultas::all();
+        return view('prodi.edit-prodi', compact('prodi', 'fakultas'));
     }
 
     /**
@@ -69,7 +69,21 @@ class ProdiController extends Controller
      */
     public function update(UpdateProdiRequest $request, Prodi $prodi)
     {
-        //
+        $validate = $request->validated();
+
+        if ($request->hasFile('foto_kaprodi')) {
+            // Hapus file foto lama jika ada
+            if ($prodi->foto_kaprodi) {
+                Storage::disk('public')->delete($prodi->foto_kaprodi);
+            }
+            // Simpan file foto baru
+            $filePath = Storage::disk("public")->putFile('profile_kaprodi', $request->file('foto_kaprodi'));
+            $validate['foto_kaprodi'] = $filePath;
+        }
+
+        $prodi->update($validate);
+
+        return redirect('/prodi')->with('success', 'Prodi berhasil diperbarui.');
     }
 
     /**
@@ -77,6 +91,26 @@ class ProdiController extends Controller
      */
     public function destroy(Prodi $prodi)
     {
-        //
+        // Hapus file foto jika ada
+        if ($prodi->foto_kaprodi) {
+            Storage::disk('public')->delete($prodi->foto_kaprodi);
+        }
+        
+        $prodi->delete();
+
+        return redirect('/prodi')->with('success', 'Prodi berhasil dihapus.');
+    }
+
+    /**
+     * Remove the kaprodi photo from storage and database.
+     */
+    public function deletePhoto(Prodi $prodi)
+    {
+        if ($prodi->foto_kaprodi) {
+            Storage::disk('public')->delete($prodi->foto_kaprodi);
+            $prodi->update(['foto_kaprodi' => '']);
+        }
+
+        return redirect()->back()->with('success', 'Foto Kaprodi berhasil dihapus.');
     }
 }

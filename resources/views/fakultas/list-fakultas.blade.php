@@ -2,7 +2,7 @@
 <style>
     /* Tabel mengikuti tema */
 [data-theme="dark"] .table {
-    --bs-table-color: #e0e0e0;
+    --bs-table-color: #ffffff;
     --bs-table-bg: transparent;
     --bs-table-border-color: #2e2e2e;
     --bs-table-hover-bg: rgba(255, 255, 255, 0.05);
@@ -12,12 +12,12 @@
 [data-theme="dark"] .card {
     background-color: #1e1e1e;
     border-color: #2e2e2e !important;
-    color: #e0e0e0;
+    color: #ffffff;
 }
 
 [data-theme="dark"] thead {
     background-color: #252525;
-    color: #aaa;
+    color: #ffffff;
 }
 
 [data-theme="dark"] .alert-success {
@@ -27,13 +27,13 @@
 }
 
 [data-theme="dark"] .btn-outline-secondary {
-    color: #aaa;
+    color: #ffffff;
     border-color: #555;
 }
 
 [data-theme="dark"] .btn-outline-secondary:hover {
     background-color: #333;
-    color: #e0e0e0;
+    color: #ffffff;
 }
 </style>
     <div class="d-flex align-items-center justify-content-between mb-4">

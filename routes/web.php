@@ -10,6 +10,7 @@ Route::get('/', function () {
 
 Route::resource('/fakultas',FakultasController::class);
 Route::resource('/prodi',ProdiController::class);
+Route::delete('/prodi/{prodi}/photo', [ProdiController::class, 'deletePhoto'])->name('prodi.delete-photo');
 
 // Route::get('/list-fakultas', function () {
 //     return view('fakultas.list-fakultas');

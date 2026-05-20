@@ -12,8 +12,8 @@
     <style>
         [data-theme="dark"] {
             --bs-body-bg: #121212;
-            --bs-body-color: #e0e0e0;
-            --bs-body-color-rgb: 224, 224, 224;
+            --bs-body-color: #ffffff;
+            --bs-body-color-rgb: 255, 255, 255;
         }
         [data-theme="dark"] .navbar {
             background-color: #1e1e1e !important;
@@ -21,11 +21,53 @@
         }
         [data-theme="dark"] .navbar-text,
         [data-theme="dark"] .nav-link {
-            color: #e0e0e0 !important;
+            color: #ffffff !important;
+        }
+        [data-theme="dark"] .nav-link.active {
+            color: #ffffff !important;
+            background-color: #0d6efd !important;
         }
         [data-theme="dark"] main {
             background-color: #121212;
-            color: #e0e0e0;
+            color: #ffffff;
+        }
+        [data-theme="dark"] h1,
+        [data-theme="dark"] h2,
+        [data-theme="dark"] h3,
+        [data-theme="dark"] h4,
+        [data-theme="dark"] h5,
+        [data-theme="dark"] h6 {
+            color: #ffffff !important;
+        }
+        [data-theme="dark"] .card {
+            background-color: #1e1e1e !important;
+            border-color: #2e2e2e !important;
+            color: #ffffff !important;
+        }
+        [data-theme="dark"] .table {
+            --bs-table-color: #ffffff !important;
+            --bs-table-bg: transparent;
+            --bs-table-border-color: #2e2e2e;
+            --bs-table-hover-bg: rgba(255, 255, 255, 0.05);
+            --bs-table-striped-bg: rgba(255, 255, 255, 0.03);
+            color: #ffffff !important;
+        }
+        [data-theme="dark"] .table th,
+        [data-theme="dark"] .table td {
+            color: #ffffff !important;
+        }
+        [data-theme="dark"] .form-label,
+        [data-theme="dark"] label {
+            color: #ffffff !important;
+        }
+        [data-theme="dark"] .form-control,
+        [data-theme="dark"] .form-select {
+            background-color: #1e1e1e !important;
+            border-color: #2e2e2e !important;
+            color: #ffffff !important;
+        }
+        [data-theme="dark"] .form-control::placeholder {
+            color: #888888 !important;
         }
         [data-theme="dark"] footer {
             background-color: #1e1e1e !important;
@@ -42,7 +84,7 @@
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-lg bg-body-tertiary px-3">
         <div class="container-fluid">
-            <a class="navbar-brand fw-semibold" href="#">
+            <a class="navbar-brand fw-semibold" href="/">
                 💻 IF21
             </a>
 
@@ -53,13 +95,16 @@
             <div class="collapse navbar-collapse" id="navbarMenu">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('/') ? 'active bg-primary text-white' : '' }}" href="/fakultas">Fakultas</a>
+                        <a class="nav-link {{ (request()->is('fakultas') || (request()->is('fakultas/*') && !request()->is('fakultas/create'))) ? 'active bg-primary text-white rounded' : '' }}" href="/fakultas">Fakultas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/prodi/create">Tambah Prodi</a>
+                        <a class="nav-link {{ (request()->is('prodi') || (request()->is('prodi/*') && !request()->is('prodi/create'))) ? 'active bg-primary text-white rounded' : '' }}" href="/prodi">Prodi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/fakultas/create">Tambah Fakultas</a>
+                        <a class="nav-link {{ request()->is('prodi/create') ? 'active bg-primary text-white rounded' : '' }}" href="/prodi/create">Tambah Prodi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('fakultas/create') ? 'active bg-primary text-white rounded' : '' }}" href="/fakultas/create">Tambah Fakultas</a>
                     </li>
                 </ul>
             </div>

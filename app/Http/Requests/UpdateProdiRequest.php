@@ -12,18 +12,21 @@ class UpdateProdiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, ValidationRule|array<mixed>|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            //
+            'fakultas_id' => 'required|exists:fakultas,id',
+            'nama_prodi' => 'required|string|max:255',
+            'nama_kaprodi' => 'required|string|max:255',
+            'foto_kaprodi' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 }
